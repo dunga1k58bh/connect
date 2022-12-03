@@ -1,0 +1,11 @@
+.home-layout {
+
+}
+
+.home-layout .navigation {
+
+}
+
+.home-layout .navigation .tab:hover{
+    background-color: red;
+}

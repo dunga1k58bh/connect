@@ -1,8 +1,13 @@
 import React from 'react';
 
-export default function ApplicationLogo({ className }) {
+export default function ApplicationLogo({label,  className }) {
+
+    var src = "/images/connect_logo.png";
+    if (label == false) {
+        src = "/images/connect_logo_1.png";
+    }
 
     return (
-        <img src={window.location.origin + "/images/connect_logo.png"} className={className}></img>
+        <img src={src} className={className}></img>
     );
 }

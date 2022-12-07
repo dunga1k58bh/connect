@@ -3,7 +3,8 @@ import Menu from '@mui/material/Menu';
 import { IconButton, Tooltip, Button} from '@mui/material';
 import { Edit } from '@mui/icons-material';
 
-export default function BasicMenu({tooltip, icon, label, children}) {
+export default function BasicMenu({tooltip, icon, render, children}) {
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -25,11 +26,9 @@ export default function BasicMenu({tooltip, icon, label, children}) {
     </Tooltip>
   );
 
-  if (label) {
+  if (render) {
     button = (
-        <Button variant="contained" color="success" startIcon={icon} onClick={handleClick}>
-            {label}
-        </Button>
+        {render}
     );
   }
 

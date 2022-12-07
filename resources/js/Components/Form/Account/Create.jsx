@@ -21,6 +21,7 @@ export default function AccountFormCreate() {
     const [open, setOpen] = React.useState(false);
 
     const submit = (e) => {
+        console.log(data);
         e.preventDefault();
         post(route('register'), {onSuccess: () => {
             console.log("success");

@@ -7,6 +7,7 @@ import Menu from '@/Components/Layout/Menu';
 import Message from '@/Components/Layout/Message';
 import Notification from '@/Components/Layout/Notification';
 import Account from '@/Components/Layout/Account';
+import SearchBox from '@/Components/UI/SearchBox';
 
 export default function Home({ children }) {
 
@@ -16,7 +17,8 @@ export default function Home({ children }) {
                 <div className='navigation h-[56px]'>
                     <Grid container>
                         <Grid item xs={2}>
-                            <ApplicationLogo className="h-[56px]"></ApplicationLogo>
+                            <ApplicationLogo label={false} className="pl-[16px] h-[56px]"></ApplicationLogo>
+                            <SearchBox></SearchBox>
                         </Grid>
                         <Grid item xs={8} >
                             <Tabs

@@ -21,8 +21,9 @@ return new class extends Migration
             $table->string('phone')->nullable();
 
             $table->timestamp('birth_date');
-            $table->string("firstname");
-            $table->string('lastname');
+            $table->string("full_name");
+            $table->string("first_name");
+            $table->string('last_name');
             $table->string('gender');
             $table->string('avatar')->nullable();
             $table->string('cover_photo')->nullable();

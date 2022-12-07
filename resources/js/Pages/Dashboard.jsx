@@ -19,7 +19,7 @@ export default function Dashboard(props) {
                             <ListItemAvatar sx={{minWidth: 40}}>
                                 <Avatar sx={{ width: 24, height: 24 }} src={user.avatar} />
                             </ListItemAvatar>
-                            <ListItemText primary={user.firstname + '' + user.lastname}></ListItemText>
+                            <ListItemText primary={user.full_name}></ListItemText>
                         </ListItemButton>
 
                         <ListItemButton>

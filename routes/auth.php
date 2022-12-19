@@ -60,4 +60,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('profile/{id}/edit-coverimage', [ProfileController::class, 'changeCoverPhoto'])
     ->name("edit.coverphoto");
+
+    Route::post('profile/{id}/edit-avatar', [ProfileController::class, 'changeAvatar'])
+    ->name("edit.avatar");
 });

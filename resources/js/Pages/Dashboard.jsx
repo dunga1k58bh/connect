@@ -2,6 +2,7 @@ import React from 'react';
 import HomeLayout from '@/Layouts/HomeLayout';
 import { Avatar, Divider, Grid, List, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { GroupRounded, GroupsRounded, MovieRounded, RestoreRounded, StorefrontRounded } from '@mui/icons-material';
+import Posts from '@/Components/Post/Posts';
 
 export default function Dashboard(props) {
 
@@ -60,7 +61,11 @@ export default function Dashboard(props) {
 
                     <Divider></Divider>
                 </div>
-                <div className="page flex-auto"></div>
+                <div className="page flex-auto">
+                    <div className='w-[500px] m-auto'>
+                        <Posts user={user}></Posts>
+                    </div>
+                </div>
                 <div className="page-side w-[300px] p-[8px] h-[calc(100vh-56px)] overflow-y-auto">
 
                 </div>

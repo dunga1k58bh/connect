@@ -66,6 +66,14 @@ class User extends Authenticatable
     }
 
 
+    protected function avatar():Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => "/images/".$value,
+        );
+    }
+
+
     /**
      * Get the indexable data array for the model.
      *

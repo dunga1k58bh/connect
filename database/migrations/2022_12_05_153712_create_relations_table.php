@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('relations', function (Blueprint $table) {
             $table->id();
-            $table->interger("user_id1");
-            $table->interger("user_id2");
-            $table->interger("status");
+            $table->integer("user_id1");
+            $table->integer("user_id2");
+            $table->integer("status");
             $table->timestamps();
         });
     }

@@ -53,4 +53,38 @@ class ProfileController extends Controller
         return back()->with('status', 200)
                     ->with('image', $file_name);
     }
+
+
+        /**
+     * Change profile avatar
+     * @param Illuminate\Http\Request $request
+     * @return Illuminate\Http\Request $response
+     */
+    public function changeAvatar(Request $request, $id) {
+
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        $extention = $request->file->extension();
+        $file_name = time().'.'.$extention;
+
+        $user = User::find($id);
+
+        if (!$user->is(Auth::user())) {
+            return new Response([
+                'code' => 0,
+                'message' => "INVALID USER"
+            ]);
+        }
+
+        $request->file->move(public_path('images'), $file_name);
+
+        $user->avatar = $file_name;
+        $user->save();
+
+        return back()->with('status', 200)
+                    ->with('image', $file_name);
+    }
+
 }

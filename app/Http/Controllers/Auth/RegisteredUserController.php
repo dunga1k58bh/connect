@@ -42,7 +42,7 @@ class RegisteredUserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             're_email' => 'required|string|email|max:255',
             'gender' => 'required|string|max:255',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -58,5 +58,7 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
+        return back()->with("message", "Create success fully!");
     }
 }

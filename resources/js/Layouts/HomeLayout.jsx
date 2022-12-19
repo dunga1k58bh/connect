@@ -1,5 +1,5 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Box, Grid, Tab, Tabs, Tooltip } from '@mui/material';
+import { Box, Button, Grid, Tab, Tabs, Tooltip } from '@mui/material';
 import React from 'react';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { Groups2Outlined, MusicVideoOutlined, SportsEsportsOutlined, StorefrontOutlined, SubscriptOutlined } from '@mui/icons-material';
@@ -17,8 +17,14 @@ export default function Home({ children }) {
                 <div className='navigation h-[56px]'>
                     <Grid container>
                         <Grid item xs={2}>
-                            <ApplicationLogo label={false} className="pl-[16px] h-[56px]"></ApplicationLogo>
-                            <SearchBox></SearchBox>
+                            <div className="flex">
+                                <Button sx={{padding: 0}} href='/'>
+                                    <ApplicationLogo label={false} className="pl-[16px] h-[56px]"></ApplicationLogo>
+                                </Button>
+                                <div className="pt-[5px] pb-[5px]">
+                                    <SearchBox></SearchBox>
+                                </div>
+                            </div>
                         </Grid>
                         <Grid item xs={8} >
                             <Tabs

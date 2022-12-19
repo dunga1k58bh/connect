@@ -12,6 +12,6 @@ export default function PrimaryButton({ type = 'submit', className = '', process
             disabled={processing}
         >
             {children}
-        </button>
+        </button> 
     );
 }

@@ -13,7 +13,7 @@ export default function Post(props) {
     const user = props.user;
 
     return (
-        <div className='post mt-[16px] w-full bg-white rounded-lg'>
+        <div className='post mt-[16px] w-full bg-white rounded-lg'> 
             <div className='header p-[16px] flex'>
                 <Avatar src={user.avatar} sx={{width: 40, height: 40}}></Avatar>
                 <div className='info'>

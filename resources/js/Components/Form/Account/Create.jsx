@@ -24,7 +24,7 @@ export default function AccountFormCreate() {
         console.log(data);
         e.preventDefault();
         post(route('register'), {onSuccess: () => {
-            console.log("success");
+            handleClose();
         }});
     }
 

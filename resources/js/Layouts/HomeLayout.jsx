@@ -14,10 +14,10 @@ export default function Home({ children }) {
 
     return (
         <div className='home-layout min-h-screen'>
-                <div className='navigation h-[56px]'>
+                <div className='navigation h-[56px] absoltue top-0 bg-white'>
                     <Grid container>
                         <Grid item xs={2}>
-                            <div className="flex">
+                            <div className="flex sticky">
                                 <Button sx={{padding: 0}} href='/'>
                                     <ApplicationLogo label={false} className="pl-[16px] h-[56px]"></ApplicationLogo>
                                 </Button>
@@ -63,7 +63,7 @@ export default function Home({ children }) {
                         </Grid>
                     </Grid>
                 </div>
-            <div className='h-[calc(100vh-56px)] bg-slate-100'>
+            <div className='h-[calc(100vh-56px)] bg-slate-100 overflow-y-scroll'>
                 {children}
             </div>
         </div>

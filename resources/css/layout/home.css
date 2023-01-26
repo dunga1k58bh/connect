@@ -9,3 +9,7 @@
 .home-layout .navigation .tab:hover{
     background-color: red;
 }
+
+.codex-editor__redactor{
+    padding-bottom: 50px  !important;
+}

@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,4 +64,16 @@ Route::middleware('auth')->group(function () {
 
     Route::post('profile/{id}/edit-avatar', [ProfileController::class, 'changeAvatar'])
     ->name("edit.avatar");
+
+    Route::get('profile/{id}', [ProfileController::class, 'user'])
+    ->name("get.profile");
+
+    Route::post('post', [PostController::class, 'post'])
+    ->name("post");
+
+    Route::post('post/{id}/like-post', [PostController::class, 'postLike'])
+    ->name("like.post");
+
+    Route::post("post/{id]/get-comment", [PostController::class, 'getComment'])
+    ->name("get-post-comment");
 });

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Attributes\SearchUsingFullText;
 use Laravel\Scout\Attributes\SearchUsingPrefix;
@@ -38,6 +39,15 @@ class User extends Authenticatable
         'data',
         'password',
     ];
+
+    public static function isViewer($id){
+        $user = User::find($id);
+
+        if (!$user || !$user->is(Auth::user())) {
+            return back()->with("code", 0)
+            ->with("message", "User wrong!");
+        }
+    }
 
     /**
      * The attributes that should be hidden for serialization.

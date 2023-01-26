@@ -1,14 +1,22 @@
 import { EmojiEmotions, InsertPhoto, VideoCameraFront } from '@mui/icons-material';
 import { Avatar, Button, Grid } from '@mui/material';
 import React from 'react';
+import PostFormCreate from '../Form/Post/Create';
 import UserAvatar from '../User/UserAvatar';
+import BoardPost from './BoardPost';
 import Post from './Post';
 
 export default function Posts(props) {
 
-    const posts = props.posts;
+    const [open, setOpen] = React.useState(false);
     const openCreatePost = () => {
-        console.log("some things");
+        setOpen(true);
+    }
+
+    const {user, posts} = props;
+
+    const closeCreatePost = () => {
+        setOpen(false);
     }
 
     return (
@@ -24,6 +32,7 @@ export default function Posts(props) {
                         >
                             What's on your mind, {props.user.first_name}
                         </div>
+                        <PostFormCreate user={props.user} open={open} onClose={closeCreatePost} ></PostFormCreate>
                     </div>
                 </div>
                 <div className='cta flex py-[10px]'>
@@ -34,7 +43,7 @@ export default function Posts(props) {
             </div>
 
             <div className='board-posts'>
-                <Post user={props.user}></Post>
+                <BoardPost posts={posts} user={props.user}></BoardPost>
             </div>
         </div>
     );

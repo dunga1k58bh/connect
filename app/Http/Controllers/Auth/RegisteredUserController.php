@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,7 @@ class RegisteredUserController extends Controller
      * @return \Inertia\Response
      */
     public function create()
+
     {
         return Inertia::render('Auth/Register');
     }
@@ -34,22 +36,29 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            're_email' => 'required|string|email|max:255',
+            'gender' => 'required|string|max:255',
+            'password' => ['required', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'full_name' => $request->firstname.' '.$request->lastname,
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
             'email' => $request->email,
+            'phone' => '',
+            'gender' => $request->gender,
+            'birth_date' => Carbon::parse($request->birthdate)->format('Y-m-d H:m:s'),
+            'role' => '1',
             'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        return back()->with("message", "Create success fully!");
     }
 }

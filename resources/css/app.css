@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@require layout/home;
+
+.codex-editor__redactor{
+    padding-bottom: 0px !important;
+
+}
+
+.codex-editor.codex-editor--narrow{
+
+}
+
+.cdx-block {
+    padding: 0 !important;
+}

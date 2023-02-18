@@ -67,7 +67,7 @@ export default function Post(props) {
             </div>
             <div className='post-comment'>
                 {showComment &&
-                    <Comment comments={comments}></Comment>
+                    <Comment user={user} comments={comments}></Comment>
                 }
             </div>
         </div>

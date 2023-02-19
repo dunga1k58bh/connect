@@ -5,9 +5,9 @@ import UserAvatar from '../User/UserAvatar';
 import { createReactEditorJS } from 'react-editor-js';
 import PostFooter from './PostFooter';
 import { useState } from 'react';
-import Comment from './Comment';
 import { useForm } from '@inertiajs/inertia-react';
 import axios from 'axios';
+import Comments from '../Comment/Comments';
 
 export default function Post(props) {
 
@@ -28,6 +28,7 @@ export default function Post(props) {
         axios.post(route('get-post-comment', {id: o_post.id}), data).then(
             response => {
                 var comments = response.data.comments.data;
+                console.log(comments);
                 setComments(comments);
             }
         )
@@ -67,7 +68,7 @@ export default function Post(props) {
             </div>
             <div className='post-comment'>
                 {showComment &&
-                    <Comment comments={comments}></Comment>
+                    <Comments user={user} post={o_post} comments={comments}></Comments>
                 }
             </div>
         </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Comment\CommentController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -76,4 +77,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post("post/{id]/get-comment", [PostController::class, 'getComment'])
     ->name("get-post-comment");
+
+    Route::post('comment', [CommentController::class, 'comment'])
+    ->name("comment");
 });

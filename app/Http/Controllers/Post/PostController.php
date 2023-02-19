@@ -38,8 +38,6 @@ class PostController extends Controller
             return back()->with("message", "Can save post");
         }
 
-        $posts = Post::loadViewerPost();
-
         return back();
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\friends\friends;
+use App\Http\Controllers\friends\FriendsController;
 use App\Models\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,10 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("/friends/get_unknown_people/{id}",[friends::class, 'get_unknown_people']);
-Route::get("/friends/get_friends/{id}",[friends::class, 'get_friends']);
-Route::get("/friends/get_request_friends/{id}",[friends::class, 'get_request_friends']);
-Route::get("/friends/get_sent_friends/{id}",[friends::class, 'get_sent_friends']);
-Route::post("/friends/send_request/{id}/{id_send}",[friends::class, 'send_request']);
-Route::post("/friends/accept_request/{id}/{id_send}",[friends::class, 'accept_request']);
-Route::post("/friends/delete_request/{id}/{id_send}",[friends::class, 'delete_request']);
+Route::get("/friends/get_unknown_people/{id}",[FriendsController::class, 'get_unknown_people']);
+Route::get("/friends/get_friends/{id}",[FriendsController::class, 'get_friends']);
+Route::get("/friends/get_request_friends/{id}",[FriendsController::class, 'get_request_friends']);
+Route::get("/friends/get_sent_friends/{id}",[FriendsController::class, 'get_sent_friends']);
+Route::post("/friends/send_request/{id}/{id_send}",[FriendsController::class, 'send_request']);
+Route::post("/friends/accept_request/{id}/{id_send}",[FriendsController::class, 'accept_request']);
+Route::post("/friends/delete_request/{id}/{id_send}",[FriendsController::class, 'delete_request']);
+Route::post("/friends/delete_friend/{id}/{id_send}",[FriendsController::class, 'delete_friend']);

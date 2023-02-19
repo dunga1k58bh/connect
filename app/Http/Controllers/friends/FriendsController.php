@@ -11,11 +11,10 @@ use App\Models\Relation;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\Cast\Array_;
+use Inertia\Inertia;
 
-use function PHPUnit\Framework\returnSelf;
 
-class friends extends Controller
+class FriendsController extends Controller
 {
     //
     public function get_unknown_people($id)
@@ -41,12 +40,16 @@ class friends extends Controller
                 ]);
             }
 
-            return response()->json(
-                [
-                    'code' => '200',
-                    'unknown_people' => $res
-                ]
-            );
+            return Inertia::render('UnknownPeople', [
+                'unknown_people' => $res,
+            ]);
+
+            // return response()->json(
+            //     [
+            //         'code' => '200',
+            //         'unknown_people' => $res
+            //     ]
+            // );
         } catch (Exception $error) {
             return response()->json(
                 [
@@ -80,12 +83,16 @@ class friends extends Controller
                 ]);
             }
 
-            return response()->json(
-                [
-                    'code' => '200',
-                    'friends' => $res
-                ]
-            );
+            return Inertia::render('Friends', [
+                'friends' => $res,
+            ]);
+
+            // return response()->json(
+            //     [
+            //         'code' => '200',
+            //         'friends' => $res
+            //     ]
+            // );
         } catch (Exception $error) {
             return response()->json(
                 [
@@ -120,12 +127,16 @@ class friends extends Controller
                 ]);
             }
 
-            return response()->json(
-                [
-                    'code' => '200',
-                    'request_friends' => $res
-                ]
-            );
+            return Inertia::render('RequestFriends', [
+                'request_friends' => $res,
+            ]);
+
+            // return response()->json(
+            //     [
+            //         'code' => '200',
+            //         'request_friends' => $res
+            //     ]
+            // );
         } catch (Exception $error) {
             return response()->json(
                 [
@@ -159,12 +170,16 @@ class friends extends Controller
                 ]);
             }
 
-            return response()->json(
-                [
-                    'code' => '200',
-                    'sent_friends' => $res
-                ]
-            );
+            return Inertia::render('SentFriends', [
+                'sent_friends' => $res,
+            ]);
+
+            // return response()->json(
+            //     [
+            //         'code' => '200',
+            //         'sent_friends' => $res
+            //     ]
+            // );
         } catch (Exception $error) {
             return response()->json(
                 [
@@ -281,7 +296,7 @@ class friends extends Controller
                     ]
                 );
 
-            if (DB::table('relations')->where("user_id1", $id)->where("user_id2", $id_send)->where("status", RECEIVER)->get()->toArray() != null) {
+            if (DB::table('relations')->where("user_id1", $id)->where("user_id2", $id_send)->where("status", SENDER)->get()->toArray() != null) {
 
                 Relation::where("user_id1", $id_send)->where("user_id2", $id)->update(
                     [
@@ -313,6 +328,54 @@ class friends extends Controller
                 [
                     'code' => '500',
                     'message' => 'Failed to delete request friend!!!'
+                ]
+            );
+        }
+    }
+
+    public function delete_friend($id, $id_send)
+    {
+        try {
+            if (!User::find($id) || !User::find($id_send))
+                return response()->json(
+                    [
+                        'code' => '404',
+                        'message' => 'Not found user'
+                    ]
+                );
+
+            if (DB::table('relations')->where("user_id1", $id)->where("user_id2", $id_send)->where("status", FRIEND)->get()->toArray() != null) {
+
+                Relation::where("user_id1", $id_send)->where("user_id2", $id)->update(
+                    [
+                        "status" => UNKNOWN_PEOPLE
+                    ]
+                );
+
+                Relation::where("user_id1", $id)->where("user_id2", $id_send)->update(
+                    [
+                        "status" => UNKNOWN_PEOPLE
+                    ]
+                );
+                return response()->json(
+                    [
+                        'code' => '200',
+                        'message' => "OK"
+                    ]
+                );
+            } else {
+                return response()->json(
+                    [
+                        'code' => '400',
+                        'message' => 'Bad Request'
+                    ]
+                );
+            }
+        } catch (Exception $error) {
+            return response()->json(
+                [
+                    'code' => '500',
+                    'message' => 'Failed to delete friend!!!'
                 ]
             );
         }

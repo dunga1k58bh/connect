@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\friends\friends;
+use App\Http\Controllers\friends\FriendsController;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Profile\ProfileController;
@@ -26,6 +28,22 @@ Route::get('/dashboard', [HomeController::class, 'home'])
 
 Route::get('/profile/{id}', [ProfileController::class, 'user'])
 ->middleware(['auth', 'verified']);
+
+Route::get('/friends/{id}', [FriendsController::class, 'get_friends'])
+->middleware(['auth', 'verified']);
+
+Route::get('/friends/get_unknown_people/{id}', [FriendsController::class, 'get_unknown_people'])
+->middleware(['auth', 'verified']);
+
+Route::get('/friends/get_friends/{id}', [FriendsController::class, 'get_friends'])
+->middleware(['auth', 'verified']);
+
+Route::get('/friends/get_request_friends/{id}', [FriendsController::class, 'get_request_friends'])
+->middleware(['auth', 'verified']);
+
+Route::get('/friends/get_sent_friends/{id}', [FriendsController::class, 'get_sent_friends'])
+->middleware(['auth', 'verified']);
+
 
 require __DIR__.'/auth.php';
 // require __DIR__.'/user.php';

@@ -8,7 +8,7 @@ export default function Dashboard(props) {
 
     const user = props.user;
     const posts = props.posts;
-
+    console.log(posts)
     return (
         <HomeLayout>
             <div className="page-main flex">
@@ -25,7 +25,7 @@ export default function Dashboard(props) {
                             <ListItemText primary={user.full_name}></ListItemText>
                         </ListItemButton>
 
-                        <ListItemButton>
+                        <ListItemButton href={`friends/${user.id}`}>
                             <ListItemIcon sx={{minWidth: 40}}>
                                 <GroupRounded color="primary"></GroupRounded>
                             </ListItemIcon>

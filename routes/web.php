@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\friends\friends;
 use App\Http\Controllers\friends\FriendsController;
+use App\Http\Controllers\Groups\GroupController;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Profile\ProfileController;
@@ -42,6 +42,9 @@ Route::get('/friends/get_request_friends/{id}', [FriendsController::class, 'get_
 ->middleware(['auth', 'verified']);
 
 Route::get('/friends/get_sent_friends/{id}', [FriendsController::class, 'get_sent_friends'])
+->middleware(['auth', 'verified']);
+
+Route::get("/groups/{id}/",[GroupController::class, 'get_group_of_user'])
 ->middleware(['auth', 'verified']);
 
 

@@ -41,10 +41,30 @@ export default function RequestFriendsContent(props) {
     return (
         <div className="py-[10px] flex">
             {list_request_friend.map((request_friend, index) => {
+                var today = new Date();
+                var time = new Date(request_friend.created_at);
+                var time_diff = today - time;
+                var ago;
+                if (Math.round(time_diff / 1000 / 60 / 60 / 24 / 365) >= 1) {
+                    ago =
+                        Math.round(time_diff / 1000 / 60 / 60 / 24 / 365) +
+                        " year";
+                } else if (Math.round(time_diff / 1000 / 60 / 60 / 24) >= 1) {
+                    ago = Math.round(time_diff / 1000 / 60 / 60 / 24) + " day";
+                } else if (Math.round(time_diff / 1000 / 60 / 60) >= 1) {
+                    ago = Math.round(time_diff / 1000 / 60 / 60) + " hour";
+                } else if (Math.round(time_diff / 1000 / 60) >= 1) {
+                    ago = Math.round(time_diff / 1000 / 60) + " minute";
+                } else if (Math.round(time_diff / 1000) >= 1) {
+                    ago = Math.round(time_diff / 1000) + " second";
+                }
+
                 initialState.push({
                     Avt: request_friend.Avt,
                     name: request_friend.name,
                     id: request_friend.id,
+                    ago: ago
+
                 });
             })}
             {request_friends.map((request_friend, index) => (
@@ -72,6 +92,8 @@ export default function RequestFriendsContent(props) {
                             Delete
                         </button>
                     </div>
+
+                    <span className="">Since: {request_friend.ago}</span>
                 </a>
             ))}
         </div>

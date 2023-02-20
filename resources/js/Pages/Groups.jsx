@@ -18,9 +18,8 @@ import {
 
 import HomeLayout from "@/Layouts/HomeLayout";
 
-import FriendsHeader from "../Components/Friends/FriendsHeader";
-import FriendsContent from "../Components/Friends/FriendsContent";
-
+import GroupsHeader from "../Components/Groups/GroupsHeader";
+import GroupsContent from "../Components/Groups/GroupsContent";
 
 export default function Friends(props) {
     const user = props.auth.user;
@@ -45,21 +44,21 @@ export default function Friends(props) {
                             ></ListItemText>
                         </ListItemButton>
 
-                        <ListItemButton
-                            href={`../friends/${user.id}`}
-                            sx={{
-                                border: 1,
-                                borderColor: "#0ea517",
-                                borderRadius: 2,
-                            }}
-                        >
+                        <ListItemButton href={`../friends/${user.id}`}>
                             <ListItemIcon sx={{ minWidth: 40 }}>
                                 <GroupRounded color="primary"></GroupRounded>
                             </ListItemIcon>
                             <ListItemText primary="Friends"></ListItemText>
                         </ListItemButton>
 
-                        <ListItemButton  href={`../groups/${user.id}`}>
+                        <ListItemButton
+                            href={`../groups/${user.id}`}
+                            sx={{
+                                border: 1,
+                                borderColor: "#0ea517",
+                                borderRadius: 2,
+                            }}
+                        >
                             <ListItemIcon sx={{ minWidth: 40 }}>
                                 <GroupsRounded color="primary"></GroupsRounded>
                             </ListItemIcon>
@@ -91,8 +90,8 @@ export default function Friends(props) {
                     <Divider></Divider>
                 </div>
                 <div className="page flex-auto w-full border-solid border-2 border-sky-500 p-[20px]">
-                    <FriendsHeader {...props}/>
-                    <FriendsContent {...props}/>
+                     <GroupsHeader {...props} />
+                     <GroupsContent {...props} />
                 </div>
             </div>
         </HomeLayout>

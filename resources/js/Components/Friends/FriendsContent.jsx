@@ -16,7 +16,8 @@ export default function FriendsContent(props) {
     function handleDelete_friend(sent_id) {
         removeIndex(sent_id);
         let url =
-            "http://127.0.0.1:8000/api/friends/delete_friend/" +
+            props.ziggy.url +
+            "/api/friends/delete_friend/" +
             user.id +
             "/" +
             sent_id;
@@ -29,10 +30,29 @@ export default function FriendsContent(props) {
     return (
         <div className="py-[10px] flex">
             {list_friend.map((friend, index) => {
+                var today = new Date();
+                var time = new Date(friend.created_at);
+                var time_diff = today - time;
+                var ago;
+                if (Math.round(time_diff / 1000 / 60 / 60 / 24 / 365) >= 1) {
+                    ago =
+                        Math.round(time_diff / 1000 / 60 / 60 / 24 / 365) +
+                        " year";
+                } else if (Math.round(time_diff / 1000 / 60 / 60 / 24) >= 1) {
+                    ago = Math.round(time_diff / 1000 / 60 / 60 / 24) + " day";
+                } else if (Math.round(time_diff / 1000 / 60 / 60) >= 1) {
+                    ago = Math.round(time_diff / 1000 / 60 / 60) + " hour";
+                } else if (Math.round(time_diff / 1000 / 60) >= 1) {
+                    ago = Math.round(time_diff / 1000 / 60) + " minute";
+                } else if (Math.round(time_diff / 1000) >= 1) {
+                    ago = Math.round(time_diff / 1000) + " second";
+                }
+
                 initialState.push({
                     Avt: friend.Avt,
                     name: friend.name,
                     id: friend.id,
+                    ago: ago,
                 });
             })}
             {friends.map((friend, index) => (
@@ -44,7 +64,7 @@ export default function FriendsContent(props) {
                         />
                     </div>
                     <span className="">{friend.name}</span>
-                    
+
                     <div className="flex justify-center mb-[10px]">
                         <button
                             className="bg-transparent hover:bg-blue-300 text-blue-700 font-semibold hover:text-white py-2 px-4 mx-[15px] border border-blue-500 hover:border-transparent rounded"
@@ -53,6 +73,8 @@ export default function FriendsContent(props) {
                             Unfriend
                         </button>
                     </div>
+
+                    <span className="">Since: {friend.ago}</span>
                 </a>
             ))}
         </div>

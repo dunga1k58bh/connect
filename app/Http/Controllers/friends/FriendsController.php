@@ -35,7 +35,7 @@ class FriendsController extends Controller
                 array_push($res, [
                     'id' => $user->id,
                     'name' => $user->full_name,
-                    'avt' => $user->avater,
+                    'avt' => $user->avatar,
                     'created_at' => $i->created_at,
                 ]);
             }
@@ -78,7 +78,7 @@ class FriendsController extends Controller
                 array_push($res, [
                     'id' => $user->id,
                     'name' => $user->full_name,
-                    'avt' => $user->avater,
+                    'avt' => $user->avatar,
                     'created_at' => $i->created_at,
                 ]);
             }
@@ -122,7 +122,7 @@ class FriendsController extends Controller
                 array_push($res, [
                     'id' => $user->id,
                     'name' => $user->full_name,
-                    'avt' => $user->avater,
+                    'avt' => $user->avatar,
                     'created_at' => $i->created_at,
                 ]);
             }
@@ -165,7 +165,7 @@ class FriendsController extends Controller
                 array_push($res, [
                     'id' => $user->id,
                     'name' => $user->full_name,
-                    'avt' => $user->avater,
+                    'avt' => $user->avatar,
                     'created_at' => $i->created_at,
                 ]);
             }

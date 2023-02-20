@@ -1,27 +1,27 @@
 import { Avatar } from "@mui/material";
 import { useState } from "react";
 
-export default function UnknownPeopleContent(props) {
+export default function GroupsContent(props) {
     const user = props.auth.user;
-    const list_unknown_people = props.unknown_people;
+    const list_group = props.list_group;
     const initialState = [];
 
     const removeIndex = (id) => {
-        setUnknown_people((current) =>
-            current.filter((unknown_people) => unknown_people.id !== id)
+        setGroups((current) =>
+            current.filter((group) => group.id !== id)
         );
     };
 
-    const [unknown_peoples, setUnknown_people] = useState(initialState);
+    const [groups, setGroups] = useState(initialState);
 
-    function handleClick(sent_id) {
-        removeIndex(sent_id);
+    function handleClick(group_id) {
+        removeIndex(group_id);
         let url =
             props.ziggy.url +
-            "/api/friends/delete_friend/" +
+            "/api/group/leave_group/" +
             user.id +
             "/" +
-            sent_id;
+            group_id;
         fetch(url, {
             method: "POST",
             mode: "cors",
@@ -30,28 +30,29 @@ export default function UnknownPeopleContent(props) {
 
     return (
         <div className="py-[10px] flex">
-            {list_unknown_people.map((unknown_people, index) => {
+            {list_group.map((group, index) => {
                 initialState.push({
-                    Avt: unknown_people.Avt,
-                    name: unknown_people.name,
-                    id: unknown_people.id,
+                    Avt: group.Avt,
+                    name: group.name,
+                    cover_img: group.cover_img,
+                    id: group.id,
                 });
             })}
-            {unknown_peoples.map((unknown_people, index) => (
+            {groups.map((group, index) => (
                 <a className="mx-[10px] min-w-[200px] max-w-[250px] text-center border-solid border-2 border-sky-500 p-[20px] rounded-[20px]">
                     <div className="flex justify-center mb-[10px]">
                         <Avatar
                             sx={{ width: 150, height: 150 }}
-                            src={unknown_people.Avt}
+                            src={group.Avt}
                         />
                     </div>
-                    <span className="">{unknown_people.name}</span>
+                    <span className="">{group.name}</span>
                     <div className="flex justify-center mb-[10px]">
                         <button
                             className="bg-blue-500 font-semibold text-white py-2 px-4 border border-transparent rounded"
-                            onClick={() => handleClick(unknown_people.id)}
+                            onClick={() => handleClick(group.id)}
                         >
-                            Add friend
+                            Leave group
                         </button>
                     </div>
                 </a>

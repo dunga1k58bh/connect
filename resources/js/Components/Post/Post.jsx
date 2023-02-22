@@ -25,15 +25,13 @@ export default function Post(props) {
 
     const loadComment = () => {
         setShowComment(true);
-        axios.post(route('get-post-comment', {id: o_post.id}), data).then(
+        axios.post(route('get-post-comments', {id: o_post.id}), data).then(
             response => {
                 var comments = response.data.comments.data;
-                console.log(comments);
                 setComments(comments);
+                console.log(comments);
             }
         )
-
-
         // post(route('get-post-comment', {id: o_post.id}))
     }
 
@@ -66,9 +64,9 @@ export default function Post(props) {
             <div className='post-footer'>
                 <PostFooter post={o_post} user={user} loadComment={loadComment}></PostFooter>
             </div>
-            <div className='post-comment'>
+            <div className='post-comment pb-[20px]'>
                 {showComment &&
-                    <Comments user={user} post={o_post} comments={comments}></Comments>
+                    <Comments user={user} post={o_post} comments={comments} callback={loadComment} show={true}></Comments>
                 }
             </div>
         </div>

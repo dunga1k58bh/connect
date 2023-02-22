@@ -75,8 +75,11 @@ Route::middleware('auth')->group(function () {
     Route::post('post/{id}/like-post', [PostController::class, 'postLike'])
     ->name("like.post");
 
-    Route::post("post/{id]/get-comment", [PostController::class, 'getComment'])
-    ->name("get-post-comment");
+    Route::post("post/{id}/get-comments", [PostController::class, 'getComments'])
+    ->name("get-post-comments");
+
+    Route::post("comment/{id}/get-responses", [CommentController::class, 'getResponseComments'])
+    ->name("get-response-comments");
 
     Route::post('comment', [CommentController::class, 'comment'])
     ->name("comment");

@@ -64,7 +64,7 @@ class PostController extends Controller
     }
 
 
-    public function getComment(Request $request){
+    public function getComments(Request $request){
 
         $comments = Comment::getByPost($request);
 

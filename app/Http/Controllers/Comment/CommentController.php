@@ -16,8 +16,14 @@ use Inertia\Response as InertiaResponse;
 
 class CommentController extends Controller
 {
-    public function getPostComment($request){
+    public function getResponseComments(Request $request){
 
+        $comments = Comment::getByComment($request);
+
+        return response()->json([
+            "message" => "SUCCESS",
+            "comments" => $comments
+        ]);
     }
 
 

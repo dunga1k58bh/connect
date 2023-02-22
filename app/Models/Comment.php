@@ -15,12 +15,25 @@ class Comment extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+
+    public function comments(){
+        return $this->hasMany(Comment::class, "parent_id");
+    }
+
     public static function getByPost($request){
 
         $sc = Comment::where("post_id", $request->id)->with("user");
-        if ($request->order_by && $request->order_by == "time"){
-            $sc->order_by("id", "desc");
-        }
+        $sc->orderBy("id", "desc");
+        $comments = $sc->paginate(10, ['*'], '', $request->page);
+
+        return $comments;
+    }
+
+
+    public static function getByComment($request){
+
+        $sc = Comment::where("parent_id", $request->id)->with("user");
+        $sc->orderBy("id", "asc");
         $comments = $sc->paginate(10, ['*'], '', $request->page);
 
         return $comments;

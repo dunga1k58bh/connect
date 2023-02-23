@@ -64,6 +64,36 @@ class PostController extends Controller
     }
 
 
+    public function togglePostLike(Request $request){
+
+        $post = Post::where("id", $request->id)->first();
+        if (!$post){
+            return back()->with("code", 0)->with("message", "INVALID DATA");
+        }
+
+        $like = Like::where("post_id", $post->id)->where("user_id", Auth::user()->id)->first();
+
+        if (!$like){
+            $like = new Like();
+            $like->type = "like";
+        } else {
+            if ($like->type == "nolike"){
+                $like->type = "like";
+            } else {
+                $like->type = "nolike";
+            }
+        }
+
+        $like->user_id = Auth::user()->id;
+        $like->post_id = $post->id;
+        $like->comment_id = -1;
+
+        $like->save();
+
+        return back()->with("like", $like);
+    }
+
+
     public function getComments(Request $request){
 
         $comments = Comment::getByPost($request);

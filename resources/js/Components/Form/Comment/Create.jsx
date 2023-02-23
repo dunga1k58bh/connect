@@ -45,6 +45,7 @@ export default function CommentFormCreate(props) {
                             <ReactEditorJS
                                 onInitialize={handleInitialize}
                                 minHeight={0}
+                                autofocus={true}
                                 sx={{
                                     '.codex-editor' :{
                                         paddingLeft: 20

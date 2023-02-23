@@ -19,10 +19,9 @@ return new class extends Migration
             $table->integer("group_id")->nullable();
             $table->integer("status");
             $table->string("title");
-            $table->json("tag")->nullable();
+            $table->text("tag")->nullable();
             $table->text("content");
-            $table->json("data")->nullable();
-            $table->timestamp("since");
+            $table->text("data")->nullable();
             $table->timestamps();
         });
     }

@@ -75,6 +75,9 @@ Route::middleware('auth')->group(function () {
     Route::post('post/{id}/like-post', [PostController::class, 'postLike'])
     ->name("like.post");
 
+    Route::post('post/{id}/toggle-like-post', [PostController::class, 'togglePostLike'])
+    ->name("toggle.like.post");
+
     Route::post("post/{id}/get-comments", [PostController::class, 'getComments'])
     ->name("get-post-comments");
 

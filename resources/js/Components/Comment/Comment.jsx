@@ -37,6 +37,10 @@ export default function Comment(props){
         )
     }
 
+
+    //For like and Comment
+
+
     return (
         <div className="comment-item relative">
             <div key={comment.id.toString()} className='comment pl-[16px] pt-[4px] flex'>
@@ -60,7 +64,7 @@ export default function Comment(props){
                     </div>
                     <div className="actions pl-[8px] pt-[4px]">
                         <div className="flex text-[12px] font-semibold decoration-[#65676b]">
-                            <div className="like cursor-pointer hover:underline">Like</div>
+
                             <div className="reply pl-[10px] cursor-pointer hover:underline"
                                 onClick={replyComment}
                             >Reply</div>

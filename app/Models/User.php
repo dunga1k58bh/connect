@@ -71,7 +71,7 @@ class User extends Authenticatable
     protected function coverPhoto():Attribute
     {
         return Attribute::make(
-            get: fn ($value) => "/images/".$value,
+            get: fn ($value) => "/images/user/cover/".$value,
         );
     }
 
@@ -79,7 +79,7 @@ class User extends Authenticatable
     protected function avatar():Attribute
     {
         return Attribute::make(
-            get: fn ($value) => "/images/".$value,
+            get: fn ($value) => "/images/user/avatar/".$value,
         );
     }
 

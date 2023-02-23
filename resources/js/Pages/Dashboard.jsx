@@ -20,8 +20,7 @@ import {
 import Posts from "@/Components/Post/Posts";
 
 export default function Dashboard(props) {
-    const user = props.user;
-    const posts = props.posts;
+    const {user, posts, canPost} = props;
     console.log(posts);
     return (
         <HomeLayout>
@@ -84,7 +83,7 @@ export default function Dashboard(props) {
                 </div>
                 <div className="page flex-auto">
                     <div className="w-[500px] m-auto">
-                        <Posts posts={posts} user={user}></Posts>
+                        <Posts posts={posts} user={user} canPost={canPost}></Posts>
                     </div>
                 </div>
                 <div className="page-side w-[300px] p-[8px] h-[calc(100vh-56px)] overflow-y-auto"></div>

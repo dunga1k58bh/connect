@@ -43,11 +43,7 @@ export default function MyTab(props) {
 
     const tab = props.tab;
 
-    const onClick = () => {
-        
-    }
-
     return (
-        <AntTab label={props.label} value={props.value}></AntTab>
+        <AntTab label={props.label} TabProps={{ tabIndex: props.index + 1 }}></AntTab>
     );
 }

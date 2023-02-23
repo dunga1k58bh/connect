@@ -3,6 +3,7 @@ import { useForm } from '@inertiajs/inertia-react';
 import { createReactEditorJS } from 'react-editor-js';
 import { useState } from "react";
 import ChildrenComments from "./ChildrenComments";
+import CommentLike from "./CommentLike";
 
 export default function Comment(props){
 
@@ -28,15 +29,17 @@ export default function Comment(props){
         show(true);
     }
 
+    const [show_res, setShowRes] = useState(true);
+
     const showResponse = () => {
         axios.post(route('get-response-comments', {id: comment.id}), data).then(
             response => {
+                setShowRes(false);
                 var comments = response.data.comments.data;
                 setChildren(comments);
             }
         )
     }
-
 
     //For like and Comment
 
@@ -65,16 +68,23 @@ export default function Comment(props){
                     <div className="actions pl-[8px] pt-[4px]">
                         <div className="flex text-[12px] font-semibold decoration-[#65676b]">
 
+                            <CommentLike
+                                comment={comment}
+                                user={user}
+                            ></CommentLike>
+
                             <div className="reply pl-[10px] cursor-pointer hover:underline"
                                 onClick={replyComment}
                             >Reply</div>
-                            <div className="reply pl-[10px] cursor-pointer hover:underline"
-                                onClick={showResponse}
-                            >Show responese</div>
                         </div>
                     </div>
                 </div>
             </div>
+            {show_res && comment.data && comment.data.responses !=0 && <div className="reply pl-[60px] cursor-pointer text-bold hover:underline"
+                onClick={showResponse}
+            >
+                View all {comment.data.responses} replies
+                </div>}
             <div className="children ml-[40px]">
                 <ChildrenComments comment={comment} comments={child_comments} user={user} show={show_form} callback={showResponse}></ChildrenComments>
             </div>

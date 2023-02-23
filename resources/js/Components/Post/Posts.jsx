@@ -2,9 +2,7 @@ import { EmojiEmotions, InsertPhoto, VideoCameraFront } from '@mui/icons-materia
 import { Avatar, Button, Grid } from '@mui/material';
 import React from 'react';
 import PostFormCreate from '../Form/Post/Create';
-import UserAvatar from '../User/UserAvatar';
 import BoardPost from './BoardPost';
-import Post from './Post';
 
 export default function Posts(props) {
 
@@ -13,15 +11,15 @@ export default function Posts(props) {
         setOpen(true);
     }
 
-    const {user, posts} = props;
-
+    const {user, posts, canPost} = props;
+    console.log(props);
     const closeCreatePost = () => {
         setOpen(false);
     }
 
     return (
         <div className='w-[500px]'>
-            <div className='add-post bg-white rounded-lg mt-[10px] divide-y divide-slate-200 px-[16px]'>
+            {canPost && <div className='add-post bg-white rounded-lg mt-[10px] divide-y divide-slate-200 px-[16px]'>
                 <div className='flex  '>
                     <div className='py-[16px]'>
                         <Avatar sx={{ width: 40, height: 40 }} src={props.user.avatar} />
@@ -32,7 +30,7 @@ export default function Posts(props) {
                         >
                             What's on your mind, {props.user.first_name}
                         </div>
-                        <PostFormCreate user={props.user} open={open} onClose={closeCreatePost} ></PostFormCreate>
+                        {<PostFormCreate user={props.user} open={open} onClose={closeCreatePost} ></PostFormCreate>}
                     </div>
                 </div>
                 <div className='cta flex py-[10px]'>
@@ -40,7 +38,7 @@ export default function Posts(props) {
                     <Button startIcon={<InsertPhoto></InsertPhoto>}>Photo/video</Button>
                     <Button startIcon={<EmojiEmotions></EmojiEmotions>}>Felling/activity</Button>
                 </div>
-            </div>
+            </div>}
 
             <div className='board-posts'>
                 <BoardPost posts={posts} user={props.user}></BoardPost>

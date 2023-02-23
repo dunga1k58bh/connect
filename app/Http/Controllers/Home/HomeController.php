@@ -25,6 +25,7 @@ class HomeController extends Controller
         return Inertia::render('Dashboard', [
             'user' => Auth::user(),
             'posts' => $posts,
+            'canPost' => true,
         ]);
     }
 }

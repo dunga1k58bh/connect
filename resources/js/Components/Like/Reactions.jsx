@@ -2,7 +2,7 @@ export default function Reactions(props){
 
     const reactions = props.reactions;
     return (
-        <div className="reactions flex absolute bottom-[35px] left-0 bg-white rounded-full p-[6px]">
+        <div className="reactions flex bg-white rounded-full p-[6px]">
             {reactions.map((reaction, index) => {
                 if (reaction.value == "nolike") return;
                 if (!reaction.img) return;

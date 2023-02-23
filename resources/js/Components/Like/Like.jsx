@@ -3,7 +3,7 @@ import Reactions from "./Reactions";
 
 export default function Like(props){
 
-    const reactions = [
+    const reactions = props.reactions || [
         {name: "Like", value:"nolike", color: "#65676B"},
         {name: "Like", value:"like" ,img: "/images/reaction/like.png", color: "#2078f4"},
         {name: "Love", value:"love" ,img: "/images/reaction/love.png", color: "#f33e58"},
@@ -47,11 +47,11 @@ export default function Like(props){
                     {props.children}
                 </div>
                 {emoji &&
-                    <div className="">
+                    <div className="absolute bottom-[20px] left-[-10px] z-10">
                         <Reactions reactions={reactions} callback={props.like}></Reactions>
                     </div>
                 }
             </div>
         </div>
-    )
+    );
 }

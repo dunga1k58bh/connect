@@ -5,11 +5,13 @@ import React from 'react';
 import { Tab, Tabs } from '@mui/material';
 import MyTabs from '@/Components/UI/Tabs';
 import MyTab from '@/Components/UI/Tab';
+import BoardPost from '@/Components/Post/BoardPost';
+import Posts from '@/Components/Post/Posts';
 
 
 export default function Profile(props) {
 
-    const user = props.user;
+    const {user, posts, canPost} = props;
     var num_friend = 0
     if (user.data && user.data.num_friend) {
         num_friend = user.data.num_friend;
@@ -40,18 +42,27 @@ export default function Profile(props) {
 
                 <div className='tabs flex bg-white'>
                     <div className='w-[900px] m-auto'>
-                        <MyTabs>
-                            <MyTab label='Posts' value={0}></MyTab>
-                            <MyTab label='About' value={1}></MyTab>
-                            <MyTab label='Friends' value={2}></MyTab>
-                            <MyTab label='Photos' value={2}></MyTab>
-                            <MyTab label='Videos' value={2}></MyTab>
-                            <MyTab label='Check-ins' value={2}></MyTab>
-                            <MyTab label='More' value={2}></MyTab>
-                        </MyTabs>
+                        <div>
+                            <MyTabs>
+                                <MyTab label='Posts' key={0}></MyTab>
+                                <MyTab label='About' key={1}>sddsefsefes</MyTab>
+                                <MyTab label='Friends' key={2}></MyTab>
+                                <MyTab label='Photos' key={3}></MyTab>
+                                <MyTab label='Videos' key={4}></MyTab>
+                                <MyTab label='Check-ins' key={5}></MyTab>
+                                <MyTab label='More' key={6}></MyTab>
+                            </MyTabs>
+                        </div>
                     </div>
                 </div>
-                <div className='page-section'></div>
+                <div className='page-section'>
+                    <div className='flex w-[900px] m-auto'>
+                        <div className='left-side w-[300px]'>dsdcsdcsdasd</div>
+                        <div className='right-size flex-1'>
+                            <Posts user={user} posts={posts} canPost={canPost}></Posts>
+                        </div>
+                    </div>
+                </div>
             </div>
         </Home>
     );

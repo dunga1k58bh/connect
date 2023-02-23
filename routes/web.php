@@ -47,6 +47,8 @@ Route::get('/friends/get_sent_friends/{id}', [FriendsController::class, 'get_sen
 Route::get("/groups/{id}/",[GroupController::class, 'get_group_of_user'])
 ->middleware(['auth', 'verified']);
 
+Route::get("/groups/list_group_suggest/{id}/",[GroupController::class, 'get_group_suggestions_of_user'])
+->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
 // require __DIR__.'/user.php';

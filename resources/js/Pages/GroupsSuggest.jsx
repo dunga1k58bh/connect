@@ -18,10 +18,10 @@ import {
 
 import HomeLayout from "@/Layouts/HomeLayout";
 
-import GroupsHeader from "../Components/Groups/GroupsHeader";
-import GroupsContent from "../Components/Groups/GroupsContent";
+import GroupsSuggestHeader from "../Components/Groups/GroupsSuggestHeader";
+import GroupsSuggestContent from "../Components/Groups/GroupsSuggestContent";
 
-export default function Groups(props) {
+export default function GroupsSuggest(props) {
     const user = props.auth.user;
     return (
         <HomeLayout>
@@ -32,7 +32,7 @@ export default function Groups(props) {
                         component="nav"
                         sx={{ "& .MuiTypography-root": {} }}
                     >
-                        <ListItemButton href={`../profile/${user.id}`}>
+                        <ListItemButton href={`../../profile/${user.id}`}>
                             <ListItemAvatar sx={{ minWidth: 40 }}>
                                 <Avatar
                                     sx={{ width: 24, height: 24 }}
@@ -44,7 +44,7 @@ export default function Groups(props) {
                             ></ListItemText>
                         </ListItemButton>
 
-                        <ListItemButton href={`../friends/${user.id}`}>
+                        <ListItemButton href={`../../friends/${user.id}`}>
                             <ListItemIcon sx={{ minWidth: 40 }}>
                                 <GroupRounded color="primary"></GroupRounded>
                             </ListItemIcon>
@@ -90,8 +90,8 @@ export default function Groups(props) {
                     <Divider></Divider>
                 </div>
                 <div className="page flex-auto w-full border-solid border-2 border-sky-500 p-[20px]">
-                     <GroupsHeader {...props} />
-                     <GroupsContent {...props} />
+                     <GroupsSuggestHeader {...props} />
+                     <GroupsSuggestContent {...props} />
                 </div>
             </div>
         </HomeLayout>

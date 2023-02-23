@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('cover_photo')->nullable();
             $table->string('link')->nullable();
-            $table->text('data')->nullable();
+            $table->json('data')->nullable();
             $table->timestamps();
         });
     }

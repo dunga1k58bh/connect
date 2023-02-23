@@ -29,11 +29,18 @@ export default function Post(props) {
             response => {
                 var comments = response.data.comments.data;
                 setComments(comments);
-                console.log(comments);
             }
         )
-        // post(route('get-post-comment', {id: o_post.id}))
     }
+
+    const formattedTimestamp = new Date(o_post.created_at).toLocaleString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false
+    });
+
 
     return (
         <div className='post mt-[16px] w-full bg-white rounded-lg'>
@@ -44,7 +51,7 @@ export default function Post(props) {
                         <span><a href={`/profile/${user.id}`}>{user.first_name + " " + user.last_name}</a></span>
                     </div>
                     <div className='time text-[12px]'>
-                        {o_post.id || 0}
+                        {formattedTimestamp}
                     </div>
                 </div>
             </div>
@@ -58,7 +65,7 @@ export default function Post(props) {
                     />
                 </div>
                 <div className='media'>
-                    <img className='object-cover' src={"images/posts/" + o_post.content.images[0]}></img>
+                    {o_post.content.images[0] && <img className='object-cover' src={"images/posts/" + o_post.content.images[0]}></img>}
                 </div>
             </div>
             <div className='post-footer'>

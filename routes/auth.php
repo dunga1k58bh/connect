@@ -86,4 +86,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('comment', [CommentController::class, 'comment'])
     ->name("comment");
+
+    Route::post('comment/{id}/like', [CommentController::class, 'commentLike'])
+    ->name("like.comment");
+
+    Route::post('comment/{id}/toggle-like', [CommentController::class, 'toggleCommentLike'])
+    ->name("toggle.like.comment");
 });

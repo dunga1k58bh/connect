@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -15,11 +16,20 @@ class ProfileController extends Controller
     //
     public function user($id) {
 
-       $user = User::find($id);
+        $user = User::find($id);
 
-       return Inertia::render('Profile', [
+        $posts = Post::loadUserPosts($id);
+
+        $canPost = false;
+        if (Auth::user()->id == $id){
+            $canPost = true;
+        }
+
+        return Inertia::render('Profile', [
             'user' => $user,
-       ]);
+            'posts' => $posts,
+            'canPost'=> $canPost
+        ]);
     }
 
     /**
@@ -45,7 +55,7 @@ class ProfileController extends Controller
             ]);
         }
 
-        $request->file->move(public_path('images'), $file_name);
+        $request->file->move(public_path('images/user/cover'), $file_name);
 
         $user->cover_photo = $file_name;
         $user->save();
@@ -78,7 +88,7 @@ class ProfileController extends Controller
             ]);
         }
 
-        $request->file->move(public_path('images'), $file_name);
+        $request->file->move(public_path('images/user/avatar'), $file_name);
 
         $user->avatar = $file_name;
         $user->save();

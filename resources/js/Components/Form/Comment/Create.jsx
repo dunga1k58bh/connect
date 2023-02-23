@@ -3,7 +3,7 @@ import { useForm } from '@inertiajs/inertia-react';
 import { Face, Gif, GifBox, PhotoCameraBack, Send, SentimentSatisfied, WebAsset } from '@mui/icons-material';
 import { Avatar } from '@mui/material';
 import React from 'react';
-import { createReactEditorJS } from 'react-editor-js';
+import { createReactEditorJS} from 'react-editor-js';
 
 export default function CommentFormCreate(props) {
 
@@ -23,14 +23,14 @@ export default function CommentFormCreate(props) {
     const editorCore = React.useRef(null)
 
     const handleInitialize = React.useCallback((instance) => {
-        editorCore.current = instance
+        editorCore.current = instance;
     }, [])
 
     const submit = React.useCallback(async () => {
         data.content = await editorCore.current.save();
         post(route('comment'), {onSuccess: (res) => {
+            editorCore.current.clear();
             props.callback();
-            editorCore.current.reset();
         }});
     }, []);
 
@@ -44,6 +44,7 @@ export default function CommentFormCreate(props) {
                         <div className='px-[12px] pt-[8px]'>
                             <ReactEditorJS
                                 onInitialize={handleInitialize}
+
                                 minHeight={0}
                                 autofocus={true}
                                 sx={{

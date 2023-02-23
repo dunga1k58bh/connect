@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer("post_id");
             $table->integer("parent_id");
             $table->text("content");
-            $table->text("data")->nullable();
+            $table->json("data")->nullable();
             $table->integer("status");
             $table->timestamps();
         });

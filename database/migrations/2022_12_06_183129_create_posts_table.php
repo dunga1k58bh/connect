@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("title");
             $table->text("tag")->nullable();
             $table->text("content");
-            $table->text("data")->nullable();
+            $table->json("data")->nullable();
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
 import { useForm } from "@inertiajs/inertia-react";
 import { Button, ListItem, MenuItem } from "@mui/material";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import BasicMenu from "../UI/BasicMenu";
 import { Avatar } from "@mui/material"
 
@@ -13,12 +13,14 @@ export default function UserAvatar(props) {
         file: null,
     });
 
+    const [src, setSrc] = useState(user.avatar);
+
     const handleFileChange = (e) =>{
 
         setData("file", e.target.files[0]);
-        const objectUrl = URL.createObjectURL(e.target.files[0]);
-        user.avatar = objectUrl;
-        post(route(`edit.avatar`, {'id': user.id}) , {onSuccess: () => {}});
+        post(route(`edit.avatar`, {'id': user.id}) , {onSuccess: () => {
+            
+        }});
     };
 
     const inputFile = useRef(null);

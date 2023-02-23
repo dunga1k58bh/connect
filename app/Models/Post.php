@@ -27,9 +27,9 @@ class Post extends Model
     ];
 
 
-    public function users()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     protected function content():Attribute
@@ -72,7 +72,7 @@ class Post extends Model
 
 
     public static function loadViewerPost(){
-        $posts = Post::orderBy('id', 'desc')->with("users")->paginate(10);
+        $posts = Post::orderBy('id', 'desc')->with("user")->paginate(10);
 
         foreach ($posts as $post){
             $my_reaction = Like::where("post_id", $post->id)->where("user_id", Auth::user()->id)->first();
@@ -87,9 +87,26 @@ class Post extends Model
 
     public static function loadUserPosts($id){
 
-        $sc = Post::where("user_id", $id)->with("users");
+        $sc = Post::where("user_id", $id)->with("user");
         $sc->orderBy("id", "desc");
         $posts = $sc->paginate(10, ['*'], '', $id);
+
+        foreach ($posts as $post){
+            $my_reaction = Like::where("post_id", $post->id)->where("user_id", Auth::user()->id)->first();
+            if ($my_reaction){
+                $post->my_reaction = $my_reaction;
+            }
+        }
+
+        return $posts;
+    }
+
+
+    public static function loadByGroup($group){
+
+        $sc = Post::where("group_id", $group->id)->with("user");
+        $sc->orderBy("id", "desc");
+        $posts = $sc->paginate(10, ['*'], '', 1);
 
         foreach ($posts as $post){
             $my_reaction = Like::where("post_id", $post->id)->where("user_id", Auth::user()->id)->first();

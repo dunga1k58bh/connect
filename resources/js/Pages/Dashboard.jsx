@@ -18,10 +18,17 @@ import {
     StorefrontRounded,
 } from "@mui/icons-material";
 import Posts from "@/Components/Post/Posts";
+import { useForm } from "@inertiajs/inertia-react";
 
 export default function Dashboard(props) {
     const {user, posts, canPost} = props;
-    console.log(posts);
+
+    const {data, get} = useForm({});
+
+    const getUrl = (url) => {
+        get(route(url))
+    }
+
     return (
         <HomeLayout>
             <div className="page-main flex">
@@ -50,7 +57,7 @@ export default function Dashboard(props) {
                             <ListItemText primary="Friends"></ListItemText>
                         </ListItemButton>
 
-                        <ListItemButton href={`groups/${user.id}`}>
+                        <ListItemButton onClick={e => getUrl("group.feed")}>
                             <ListItemIcon sx={{ minWidth: 40 }}>
                                 <GroupsRounded color="primary"></GroupsRounded>
                             </ListItemIcon>

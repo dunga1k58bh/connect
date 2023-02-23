@@ -10,12 +10,13 @@ import { useState } from 'react';
 export default function PostFormCreate(props) {
 
     const user = props.user;
+    const group = props.group || {};
 
     const ReactEditorJS = createReactEditorJS();
 
     const { data, setData, post, processing, errors, reset } = useForm({
         user_id: user.id,
-        group_id: null,
+        group_id: group.id || 0,
         content: {},
         images: [],
         tags: [],
@@ -34,7 +35,7 @@ export default function PostFormCreate(props) {
     const submit = React.useCallback(async () => {
         data.content = await editorCore.current.save();
         post(route('post'), {onSuccess: (res) => {
-            data.images = [];
+            reset();
             onClose();
         }});
     }, []);
@@ -71,7 +72,6 @@ export default function PostFormCreate(props) {
                                 <span><a href={`/profile/${user.id}`}>{user.first_name + " " + user.last_name}</a></span>
                             </div>
                             <div className='time text-[12px]'>
-                                2h ago
                             </div>
                         </div>
                     </div>

@@ -13,8 +13,8 @@ export default function Home({ children }) {
 
 
     return (
-        <div className='home-layout min-h-screen'>
-                <div className='navigation h-[56px] absoltue top-0 bg-white'>
+        <div className='home-layout min-h-screen '>
+                <div className='navigation h-[58px] absoltue top-0 bg-white shadow-2xl'>
                     <Grid container>
                         <Grid item xs={2}>
                             <div className="flex sticky">

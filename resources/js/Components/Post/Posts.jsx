@@ -11,8 +11,8 @@ export default function Posts(props) {
         setOpen(true);
     }
 
-    const {user, posts, canPost} = props;
-    console.log(props);
+    const {user, posts, canPost, group} = props;
+
     const closeCreatePost = () => {
         setOpen(false);
     }
@@ -30,7 +30,7 @@ export default function Posts(props) {
                         >
                             What's on your mind, {props.user.first_name}
                         </div>
-                        {<PostFormCreate user={props.user} open={open} onClose={closeCreatePost} ></PostFormCreate>}
+                        {<PostFormCreate user={props.user} group={group} open={open} onClose={closeCreatePost}></PostFormCreate>}
                     </div>
                 </div>
                 <div className='cta flex py-[10px]'>

@@ -44,6 +44,6 @@ export default function MyTab(props) {
     const tab = props.tab;
 
     return (
-        <AntTab label={props.label} TabProps={{ tabIndex: props.index + 1 }}></AntTab>
+        <AntTab label={props.label} tabprops={{ tabindex: props.index + 1 }}></AntTab>
     );
 }

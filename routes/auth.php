@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Comment\CommentController;
+use App\Http\Controllers\Groups\GroupController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -92,4 +93,13 @@ Route::middleware('auth')->group(function () {
 
     Route::post('comment/{id}/toggle-like', [CommentController::class, 'toggleCommentLike'])
     ->name("toggle.like.comment");
+
+    Route::get('groups/feed', [GroupController::class, 'groupFeed'])
+    ->name("group.feed");
+
+    Route::post('group/-/create', [GroupController::class, 'createGroup'])
+    ->name("group.create");
+
+    Route::get('groups/{id}', [GroupController::class, 'group'])
+    ->name("group");
 });

@@ -44,8 +44,8 @@ Route::get('/friends/get_request_friends/{id}', [FriendsController::class, 'get_
 Route::get('/friends/get_sent_friends/{id}', [FriendsController::class, 'get_sent_friends'])
 ->middleware(['auth', 'verified']);
 
-Route::get("/groups/{id}/",[GroupController::class, 'get_group_of_user'])
-->middleware(['auth', 'verified']);
+// Route::get("/groups/{id}/",[GroupController::class, 'get_group_of_user'])
+// ->middleware(['auth', 'verified']);
 
 
 require __DIR__.'/auth.php';

@@ -12,13 +12,64 @@ use App\Models\User;
 use App\Models\Group;
 use App\Models\GroupUser;
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 
 class GroupController extends Controller
 {
-    //
+
+    public function groupFeed(){
+
+        $posts = [];
+
+        return Inertia::render('Group/GroupFeed', [
+            'user' => Auth::user(),
+            'posts' => $posts,
+            'canPost'=> false
+        ]);
+    }
+
+
+    public function group(Request $request){
+
+        $group = Group::find($request->id);
+
+        $posts = Post::loadByGroup($group);
+
+        return Inertia::render('Group/Group', [
+            "group" => $group,
+            "posts" => $posts,
+            "canPost" => true,
+        ]);
+    }
+
+
+    public function createGroup(Request $request){
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|integer'
+        ]);
+
+        $group = new Group();
+
+        $group->name = $request->name;
+        $group->type = $request->type;
+        $group->data = [
+            "members" => 1
+        ];
+        $group->save();
+
+        $group->onCreated();
+
+        return redirect()->route("group", ["id" => $group->id]);
+    }
+
+
     public function get_group_of_user($id)
     {
         try {
@@ -31,7 +82,7 @@ class GroupController extends Controller
                 );
 
             $list_group =GroupUser::All()->where("group_id", $id);
-                
+
             $res = [];
             foreach ($list_group as $i) {
                 $group = Group::all()->where("id", $i->group_id)->first();
@@ -100,5 +151,4 @@ class GroupController extends Controller
             );
         }
     }
-
 }

@@ -19,7 +19,7 @@ export default function ChildrenComments(props) {
             {comments.map((comment, index) => {
 
                 return (
-                    <Comment comment={comment} user={user}></Comment>
+                    <Comment key={index} comment={comment} user={user}></Comment>
                 )
             })}
             </div>

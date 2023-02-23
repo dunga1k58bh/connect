@@ -27,6 +27,8 @@ class PostController extends Controller
 
         //Read post data create
         $post->user_id =$request->user_id;
+        $post->group_id = $request->group_id;
+
         $post->content = [
             "content" => $request->content,
             "images" => $images

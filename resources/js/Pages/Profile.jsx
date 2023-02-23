@@ -2,11 +2,10 @@ import UserAvatar from '@/Components/User/UserAvatar';
 import CoverImage from '@/Components/User/CoverImage';
 import Home from '@/Layouts/HomeLayout';
 import React from 'react';
-import { Tab, Tabs } from '@mui/material';
 import MyTabs from '@/Components/UI/Tabs';
 import MyTab from '@/Components/UI/Tab';
-import BoardPost from '@/Components/Post/BoardPost';
 import Posts from '@/Components/Post/Posts';
+import ProfileInfo from '@/Components/Profile/ProfileInfo';
 
 
 export default function Profile(props) {
@@ -57,7 +56,9 @@ export default function Profile(props) {
                 </div>
                 <div className='page-section'>
                     <div className='flex w-[900px] m-auto'>
-                        <div className='left-side w-[300px]'>dsdcsdcsdasd</div>
+                        <div className='left-side w-[300px] pr-[20px]'>
+                            <ProfileInfo user={user}></ProfileInfo>
+                        </div>
                         <div className='right-size flex-1'>
                             <Posts user={user} posts={posts} canPost={canPost}></Posts>
                         </div>

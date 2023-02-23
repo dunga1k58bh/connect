@@ -12,6 +12,7 @@ import Comments from '../Comment/Comments';
 export default function Post(props) {
 
     const o_post = props.post;
+    const post_user = o_post.user;
 
     const ReactEditorJS = createReactEditorJS();
     const user = props.user;
@@ -45,10 +46,10 @@ export default function Post(props) {
     return (
         <div className='post mt-[16px] w-full bg-white rounded-lg'>
             <div className='header p-[16px] flex'>
-                <Avatar src={user.avatar} sx={{width: 40, height: 40}}></Avatar>
+                <Avatar src={post_user.avatar} sx={{width: 40, height: 40}}></Avatar>
                 <div className='info ml-[8px]'>
                     <div className='name font-semibold'>
-                        <span><a href={`/profile/${user.id}`}>{user.first_name + " " + user.last_name}</a></span>
+                        <span><a href={`/profile/${post_user.id}`}>{post_user.first_name + " " + post_user.last_name}</a></span>
                     </div>
                     <div className='time text-[12px]'>
                         {formattedTimestamp}

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer("post_id");
             $table->integer("comment_id");
             $table->string("type");
-            $table->timestamp("since");
             $table->timestamps();
         });
     }

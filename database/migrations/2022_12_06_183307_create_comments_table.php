@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->integer("user_id");
             $table->integer("post_id");
-            $table->integer("parent_id")->nullable();
+            $table->integer("parent_id");
             $table->text("content");
+            $table->text("data")->nullable();
             $table->integer("status");
-            $table->timestamp("since")->nullable();
             $table->timestamps();
         });
     }

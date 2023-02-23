@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import CommentFormCreate from '../Form/Comment/Create';
 import Comment from './Comment';
 
-export default function Comments(props) {
+export default function ChildrenComments(props) {
 
     const comments = props.comments;
     const user = props.user;
@@ -16,7 +16,6 @@ export default function Comments(props) {
     return (
         <div className="">
             <div className='comments'>
-            {show_form && <CommentFormCreate post={post} user={user} comment={comment} callback={props.callback}></CommentFormCreate>}
             {comments.map((comment, index) => {
 
                 return (
@@ -24,6 +23,7 @@ export default function Comments(props) {
                 )
             })}
             </div>
+            {show_form && <CommentFormCreate post={post} user={user} comment={comment} callback={props.callback}></CommentFormCreate>}
         </div>
     );
 }

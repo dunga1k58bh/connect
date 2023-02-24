@@ -59,7 +59,7 @@ export default function SentFriends(props) {
                             <ListItemText primary="Friends"></ListItemText>
                         </ListItemButton>
 
-                        <ListItemButton>
+                        <ListItemButton  href={`../../groups/${user.id}`}>
                             <ListItemIcon sx={{ minWidth: 40 }}>
                                 <GroupsRounded color="primary"></GroupsRounded>
                             </ListItemIcon>

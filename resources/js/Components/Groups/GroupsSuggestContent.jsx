@@ -1,29 +1,15 @@
-import { useForm } from "@inertiajs/inertia-react";
 import { Avatar } from "@mui/material";
 import { useState } from "react";
-import {
-    Avatar,
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    TextField,
-} from "@mui/material";
-export default function GroupsContent(props) {
+
+export default function GroupsSuggestContent(props) {
     const user = props.auth.user;
-    const list_group = props.groups;
+    const list_group = props.list_group_suggest;
     const initialState = [];
 
-    const {data, get} = useForm({});
-
-    const getUrl = (url, props) => {
-        get(route(url, props))
-    }
-
     const removeIndex = (id) => {
-        setGroups((current) => current.filter((group) => group.id !== id));
+        setGroups((current) =>
+            current.filter((group) => group.id !== id)
+        );
     };
 
     const [groups, setGroups] = useState(initialState);
@@ -32,7 +18,7 @@ export default function GroupsContent(props) {
         removeIndex(group_id);
         let url =
             props.ziggy.url +
-            "/api/group/leave_group/" +
+            "/api/group/join_group/" +
             user.id +
             "/" +
             group_id;
@@ -41,38 +27,6 @@ export default function GroupsContent(props) {
             mode: "cors",
         });
     }
-
-    const [open, setOpen] = useState(false);
-    const [itemName, setItemName] = useState("");
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleCreate = () => {
-        setOpen(false);
-        let url = props.ziggy.url + "/api/group/make_group/" + user.id;
-        fetch(url, {
-            method: "POST",
-            mode: "cors",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name_group: itemName,
-            }),
-        });
-        groups.push({
-            Avt: "",
-            name: itemName,
-            cover_img: ""
-        });
-    };
 
     return (
         <div className="py-[10px] flex">
@@ -92,15 +46,13 @@ export default function GroupsContent(props) {
                             src={group.Avt}
                         />
                     </div>
-                    <div className="cursor-pointer"
-                        onClick={e => getUrl(`group`, {id: group.id})}
-                    >{group.name}</div>
+                    <span className="">{group.name}</span>
                     <div className="flex justify-center mb-[10px]">
                         <button
                             className="bg-blue-500 font-semibold text-white py-2 px-4 border border-transparent rounded"
                             onClick={() => handleClick(group.id)}
                         >
-                            Leave group
+                            Join group
                         </button>
                     </div>
                 </a>

@@ -18,11 +18,10 @@ import {
 
 import HomeLayout from "@/Layouts/HomeLayout";
 
-import RequestFriendsHeader from "../Components/Friends/RequestFriendsHeader";
-import RequestFriendsContent from "../Components/Friends/RequestFriendsContent";
+import GroupsSuggestHeader from "../Components/Groups/GroupsSuggestHeader";
+import GroupsSuggestContent from "../Components/Groups/GroupsSuggestContent";
 
-
-export default function RequestFriends(props) {
+export default function GroupsSuggest(props) {
     const user = props.auth.user;
     return (
         <HomeLayout>
@@ -45,21 +44,21 @@ export default function RequestFriends(props) {
                             ></ListItemText>
                         </ListItemButton>
 
-                        <ListItemButton
-                            href={`../../friends/${user.id}`}
-                            sx={{
-                                border: 1,
-                                borderColor: "#0ea517",
-                                borderRadius: 2,
-                            }}
-                        >
+                        <ListItemButton href={`../../friends/${user.id}`}>
                             <ListItemIcon sx={{ minWidth: 40 }}>
                                 <GroupRounded color="primary"></GroupRounded>
                             </ListItemIcon>
                             <ListItemText primary="Friends"></ListItemText>
                         </ListItemButton>
 
-                        <ListItemButton  href={`../../groups/${user.id}`}>
+                        <ListItemButton
+                            href={`../../groups/${user.id}`}
+                            sx={{
+                                border: 1,
+                                borderColor: "#0ea517",
+                                borderRadius: 2,
+                            }}
+                        >
                             <ListItemIcon sx={{ minWidth: 40 }}>
                                 <GroupsRounded color="primary"></GroupsRounded>
                             </ListItemIcon>
@@ -91,8 +90,8 @@ export default function RequestFriends(props) {
                     <Divider></Divider>
                 </div>
                 <div className="page flex-auto w-full border-solid border-2 border-sky-500 p-[20px]">
-                    <RequestFriendsHeader {...props}/>
-                    <RequestFriendsContent {...props}/>
+                     <GroupsSuggestHeader {...props} />
+                     <GroupsSuggestContent {...props} />
                 </div>
             </div>
         </HomeLayout>

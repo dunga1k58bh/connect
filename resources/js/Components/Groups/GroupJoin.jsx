@@ -2,7 +2,7 @@ import { useForm } from "@inertiajs/inertia-react";
 import { Avatar } from "@mui/material";
 import { useState } from "react";
 
-export default function GroupsContent(props) {
+export default function GroupsJoin(props) {
     const user = props.auth.user;
     const list_group = props.groups;
     const initialState = [];
@@ -22,10 +22,9 @@ export default function GroupsContent(props) {
     const [groups, setGroups] = useState(initialState);
 
     function handleClick(group_id) {
-        removeIndex(group_id);
         let url =
             props.ziggy.url +
-            "/api/group/leave_group/" +
+            "/api/group/join/" +
             user.id +
             "/" +
             group_id;
@@ -61,7 +60,7 @@ export default function GroupsContent(props) {
                             className="bg-blue-500 font-semibold text-white py-2 px-4 border border-transparent rounded"
                             onClick={() => handleClick(group.id)}
                         >
-                            Leave group
+                            Join
                         </button>
                     </div>
                 </a>

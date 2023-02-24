@@ -49,6 +49,18 @@ class User extends Authenticatable
         }
     }
 
+
+    public function isAdmin($group){
+        $sc = GroupUser::where("user_id", $this->id)->where("group_id", $group->id);
+        $gu = $sc->first();
+
+        if (!$gu || $gu->role != GroupUser::ADMIN){
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

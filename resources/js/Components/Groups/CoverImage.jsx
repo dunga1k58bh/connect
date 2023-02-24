@@ -17,6 +17,7 @@ export default function CoverImage(props) {
 
         setData("file", e.target.files[0]);
         const objectUrl = URL.createObjectURL(e.target.files[0]);
+        group.cover_photo = objectUrl;
     }
 
     const submit = () => {

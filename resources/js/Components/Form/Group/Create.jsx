@@ -74,7 +74,7 @@ export default function GroupFormCreate() {
             </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={submit}>Sign up</Button>
+          <Button onClick={submit}>Create</Button>
         </DialogActions>
       </Dialog>
     </div>

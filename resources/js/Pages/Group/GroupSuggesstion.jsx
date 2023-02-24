@@ -1,11 +1,12 @@
 import GroupFormCreate from "@/Components/Form/Group/Create";
+import GroupsJoin from "@/Components/Groups/GroupJoin";
 import GroupsContent from "@/Components/Groups/GroupsContent";
 import GroupsHeader from "@/Components/Groups/GroupsHeader";
 import SearchBox from "@/Components/UI/SearchBox";
 import GroupLayout from "@/Layouts/GroupLayout";
 import { Button } from "@mui/material";
 
-export default function GroupFeed(props){
+export default function GroupSuggesstion(props){
 
     return (
         <GroupLayout>
@@ -24,7 +25,7 @@ export default function GroupFeed(props){
                 </div>
                 <div className="flex-1">
                     <GroupsHeader {...props} />
-                    <GroupsContent {...props} />
+                    <GroupsJoin {...props} />
                 </div>
             </div>
         </GroupLayout>

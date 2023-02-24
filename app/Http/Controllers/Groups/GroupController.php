@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Groups;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
-use OpenApi\Attributes\Response;
 
-
-use App\Models\Relation;
 use App\Models\User;
 use App\Models\Group;
 use App\Models\GroupUser;
@@ -24,11 +21,35 @@ class GroupController extends Controller
 
     public function groupFeed(){
 
-        $posts = [];
+        $list_group =GroupUser::All()->where("user_id", Auth::user()->id);
+
+        $res = [];
+        foreach ($list_group as $i) {
+            $group = Group::all()->where("id", $i->group_id)->first();
+            array_push($res, [
+                'id' => $group->id,
+                'name' => $group->name,
+                'avt' => $group->avatar,
+                'cover_img' => $group->cover_photo,
+                'created_at' => $i->created_at,
+            ]);
+        }
 
         return Inertia::render('Group/GroupFeed', [
             'user' => Auth::user(),
-            'posts' => $posts,
+            'groups' => $res,
+            'canPost'=> false
+        ]);
+    }
+
+
+    public function groupSuggestion(){
+
+        $groups = Group::all();
+
+        return Inertia::render('Group/GroupSuggesstion', [
+            'user' => Auth::user(),
+            'groups' => $groups,
             'canPost'=> false
         ]);
     }
@@ -67,6 +88,29 @@ class GroupController extends Controller
         $group->onCreated();
 
         return redirect()->route("group", ["id" => $group->id]);
+    }
+
+
+    public function editCoverPhoto(Request $request){
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        $group = Group::find($request->id);
+        if (Auth::user()->isAdmin($group)){
+
+        }
+
+        $extention = $request->file->extension();
+        $file_name = time().'.'.$extention;
+
+        $request->file->move(public_path('images/group/cover'), $file_name);
+
+        $group->cover_photo = $file_name;
+        $group->save();
+
+        return back()->with('status', 200)
+                    ->with('image', $file_name);
     }
 
 

@@ -59,7 +59,7 @@ export default function Friends(props) {
                             <ListItemText primary="Friends"></ListItemText>
                         </ListItemButton>
 
-                        <ListItemButton  href={`../groups/${user.id}`}>
+                        <ListItemButton  href={`groups/feed`}>
                             <ListItemIcon sx={{ minWidth: 40 }}>
                                 <GroupsRounded color="primary"></GroupsRounded>
                             </ListItemIcon>

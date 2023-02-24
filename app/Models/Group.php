@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -28,5 +29,12 @@ class Group extends Model
         $group_user->role = GroupUser::ADMIN;
 
         $group_user->save();
+    }
+
+    protected function coverPhoto():Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => "/images/group/cover/".$value,
+        );
     }
 }

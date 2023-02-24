@@ -10,7 +10,7 @@ export default function FriendsHeader(props) {
                 <a href={`get_request_friends/${user.id}`}>Friend requests</a>
             </button>
             <button className="bg-transparent hover:bg-blue-300 text-blue-700 font-semibold hover:text-white py-2 px-4 mx-[15px] border border-blue-500 hover:border-transparent rounded">
-                <a href={`get_unknown_people/${user.id}`}>Suggestions</a>
+                <a href={`group/${user.id}`}>Suggestions</a>
             </button>
             <button className="bg-transparent hover:bg-blue-300 text-blue-700 font-semibold hover:text-white py-2 px-4 mx-[15px] border border-blue-500 hover:border-transparent rounded">
                 <a href={`get_sent_friends/${user.id}`}>Friend sent</a>

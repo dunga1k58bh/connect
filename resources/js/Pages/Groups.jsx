@@ -21,7 +21,7 @@ import HomeLayout from "@/Layouts/HomeLayout";
 import GroupsHeader from "../Components/Groups/GroupsHeader";
 import GroupsContent from "../Components/Groups/GroupsContent";
 
-export default function Friends(props) {
+export default function Groups(props) {
     const user = props.auth.user;
     return (
         <HomeLayout>

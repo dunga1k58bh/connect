@@ -97,9 +97,15 @@ Route::middleware('auth')->group(function () {
     Route::get('groups/feed', [GroupController::class, 'groupFeed'])
     ->name("group.feed");
 
+    Route::get('groups/suggesstion', [GroupController::class, 'groupSuggestion'])
+    ->name("group.suggestion");
+
     Route::post('group/-/create', [GroupController::class, 'createGroup'])
     ->name("group.create");
 
     Route::get('groups/{id}', [GroupController::class, 'group'])
     ->name("group");
+
+    Route::post('groups/{id}/edit-cover-photo', [GroupController::class, 'editCoverPhoto'])
+    ->name('group.edit.coverphoto');
 });

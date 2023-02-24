@@ -52,7 +52,7 @@ export default function GroupsSuggest(props) {
                         </ListItemButton>
 
                         <ListItemButton
-                            href={`../groups/${user.id}`}
+                            href={`../../groups/${user.id}`}
                             sx={{
                                 border: 1,
                                 borderColor: "#0ea517",

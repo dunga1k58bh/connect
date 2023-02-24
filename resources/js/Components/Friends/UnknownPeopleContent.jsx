@@ -18,7 +18,7 @@ export default function UnknownPeopleContent(props) {
         removeIndex(sent_id);
         let url =
             props.ziggy.url +
-            "/api/friends/delete_friend/" +
+            "/api/friends/send_request/" +
             user.id +
             "/" +
             sent_id;

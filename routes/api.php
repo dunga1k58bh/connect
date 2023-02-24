@@ -29,6 +29,7 @@ Route::post("/friends/send_request/{id}/{id_send}",[FriendsController::class, 's
 Route::post("/friends/accept_request/{id}/{id_send}",[FriendsController::class, 'accept_request']);
 Route::post("/friends/delete_request/{id}/{id_send}",[FriendsController::class, 'delete_request']);
 Route::post("/friends/delete_friend/{id}/{id_send}",[FriendsController::class, 'delete_friend']);
+Route::post("/friends/delete_sent/{id}/{id_send}",[FriendsController::class, 'delete_sent']);
 
 // Route::get("/group/get_group_of_user/{id}/",[GroupController::class, 'get_group_of_user']);
 // Route::get("/group/get_group_suggestions_of_user/{id}/",[GroupController::class, 'get_group_suggestions_of_user']);

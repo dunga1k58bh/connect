@@ -296,6 +296,54 @@ class FriendsController extends Controller
                     ]
                 );
 
+            if (DB::table('relations')->where("user_id1", $id)->where("user_id2", $id_send)->where("status", RECEIVER)->get()->toArray() != null) {
+
+                Relation::where("user_id1", $id_send)->where("user_id2", $id)->update(
+                    [
+                        "status" => UNKNOWN_PEOPLE
+                    ]
+                );
+
+                Relation::where("user_id1", $id)->where("user_id2", $id_send)->update(
+                    [
+                        "status" => UNKNOWN_PEOPLE
+                    ]
+                );
+                return response()->json(
+                    [
+                        'code' => '200',
+                        'message' => "OK"
+                    ]
+                );
+            } else {
+                return response()->json(
+                    [
+                        'code' => '400',
+                        'message' => 'Bad Request'
+                    ]
+                );
+            }
+        } catch (Exception $error) {
+            return response()->json(
+                [
+                    'code' => '500',
+                    'message' => 'Failed to delete request friend!!!'
+                ]
+            );
+        }
+    }
+
+    public function delete_sent($id, $id_send)
+    {
+        try {
+            if (!User::find($id) || !User::find($id_send))
+                return response()->json(
+                    [
+                        'code' => '404',
+                        'message' => 'Not found user'
+                    ]
+                );
+
             if (DB::table('relations')->where("user_id1", $id)->where("user_id2", $id_send)->where("status", SENDER)->get()->toArray() != null) {
 
                 Relation::where("user_id1", $id_send)->where("user_id2", $id)->update(

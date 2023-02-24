@@ -42,7 +42,7 @@ export default function GroupFormCreate() {
         <Button variant="contained" onClick={handleClickOpen}
             sx={{width: "100%"}}
         >
-            Create new account
+            Create new group
         </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Create Group</DialogTitle>

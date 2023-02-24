@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\friends\FriendsController;
 use App\Http\Controllers\Groups\GroupController;
-use App\Models\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

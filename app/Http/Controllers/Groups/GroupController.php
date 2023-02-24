@@ -92,9 +92,6 @@ class GroupController extends Controller
 
 
     public function editCoverPhoto(Request $request){
-        $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-        ]);
 
         $group = Group::find($request->id);
         if (Auth::user()->isAdmin($group)){

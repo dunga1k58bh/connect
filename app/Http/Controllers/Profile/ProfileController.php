@@ -39,10 +39,6 @@ class ProfileController extends Controller
      */
     public function changeCoverPhoto(Request $request, $id) {
 
-        $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-        ]);
-
         $extention = $request->file->extension();
         $file_name = time().'.'.$extention;
 
@@ -71,10 +67,6 @@ class ProfileController extends Controller
      * @return Illuminate\Http\Request $response
      */
     public function changeAvatar(Request $request, $id) {
-
-        $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-        ]);
 
         $extention = $request->file->extension();
         $file_name = time().'.'.$extention;

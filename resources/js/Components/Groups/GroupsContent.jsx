@@ -2,7 +2,6 @@ import { useForm } from "@inertiajs/inertia-react";
 import { Avatar } from "@mui/material";
 import { useState } from "react";
 import {
-    Avatar,
     Button,
     Dialog,
     DialogActions,
